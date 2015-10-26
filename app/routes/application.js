@@ -8,12 +8,11 @@ export default Ember.Route.extend({
     }).then(function(post){
       console.info("with post", post.get("id"));
       return self.store.findAll("user");
-    })
-    // Preloading all posts doesn't work
-    // .then(function(users){
-    //   return self.store.findAll("post").then(function(){
-    //     return users;
-    //   });
-    // });
+    }).then(function(users){
+      return Promise.all(users.getEach("posts")).then(function(){
+        console.info("loaded all posts")
+        return users;
+      });
+    });
   }
 });
