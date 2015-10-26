@@ -1,3 +1,18 @@
-<h2 id="title">Welcome to Ember</h2>
+<h2 id="title">Users</h2>
 
-{{outlet}}
+<table>
+  <thead>
+    <tr>
+      <td>User</td>
+      <td>#no posts</td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |user|}}
+      <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.posts.length}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
